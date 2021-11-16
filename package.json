@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "node ./server",
+    "prod:static": "npm run build && npm run prod:serve:static",
+    "prod:server": "npm run build && npm run prod:serve:server",
+    "// Build for production": "",
+    "build": "npm run build:clean && npm run build:vite && npm run build:prerender",
+    "build:clean": "rimraf dist/",
+    "build:vite": "vite build && vite build --ssr",
+    "build:prerender": "vite-plugin-ssr prerender",
+    "prod:serve:server": "cross-env NODE_ENV=production node ./server",
+    "// We purposely serve `./` instead of `dist/client/` to simulate a Base URL change": "",
+    "prod:serve:static": "serve ./ --listen 3000"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^1.0.4",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "serve": "^12.0.1",
+    "vite": "^2.6.7",
+    "vite-plugin-ssr": "0.3.26"
+  },
+  "// Needed for Yarn workspaces": "",
+  "name": "example-base-url",
+  "version": "0.0.0"
+}
